@@ -31,6 +31,17 @@ def change_data(): #Редактирование данных
         text = ''.join(f'{note['title']};{note['text']};{note['timestamp']}\n' for note in notes)
         f.write(text)
         print("Заметка успешно отредактирована!")
+
+def delete_data(): #Удаление данных
+    notes = print_data()
+    list_notes()
+    note_index = int(input("Введите номер заметки, которую необходимо удалить: ")) - 1
+    del notes[note_index]
+
+    with open('notes.csv', 'w', encoding='utf-8') as f:
+        text = ''.join(f'{note['title']};{note['text']};{note['timestamp']}\n' for note in notes)
+        f.write(text)
+        print("Заметка успешно удалена!")
         
 def print_data(): #Вывод данных
     with open('notes.csv', 'r', encoding='utf-8') as f:

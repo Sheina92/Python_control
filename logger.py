@@ -11,6 +11,12 @@ def input_data(): #Ввод данных
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         f.write(f"{title};{text};{timestamp}\n")
         print("Заметка успешно добавлена!")
+        
+def list_notes(): #Вывод списка заметок
+    notes = print_data()
+    notes.sort(key=lambda x: x['timestamp'], reverse=True)
+    for i, note in enumerate(notes, 1):
+        print(f"{i}. {note['title']} - {note['text']} - {note['timestamp']}")
 
 def print_data(): #Вывод данных
     with open('notes.csv', 'r', encoding='utf-8') as f:

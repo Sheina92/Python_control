@@ -16,7 +16,7 @@ def list_notes(): #Вывод списка заметок
     notes = print_data()
     notes.sort(key=lambda x: x['timestamp'], reverse=True)
     for i, note in enumerate(notes, 1):
-        print(f"{i}. {note['title']} - {note['text']} - {note['timestamp']}")
+        print(f"{i}. {note['title']}; {note['text']}; {note['timestamp']}")
 
 def change_data(): #Редактирование данных
     notes = print_data()
@@ -42,8 +42,9 @@ def delete_data(): #Удаление данных
         text = ''.join(f'{note['title']};{note['text']};{note['timestamp']}\n' for note in notes)
         f.write(text)
         print("Заметка успешно удалена!")
-        
+
 def print_data(): #Вывод данных
+    print("Добавленные заметки:")
     with open('notes.csv', 'r', encoding='utf-8') as f:
         data_first = f.readlines()
     
